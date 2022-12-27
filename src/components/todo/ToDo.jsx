@@ -1,7 +1,10 @@
 import { Card, Col, OverlayTrigger, Tooltip } from "react-bootstrap"
 import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai"
+import { useDispatch } from "react-redux";
+import { deleteTodo } from "../../services/action/action";
 
 const ToDo = () => {
+  const dispatch = useDispatch();
   return (
     <Col md={3} className="mb-4">
       <Card >
@@ -23,6 +26,7 @@ const ToDo = () => {
             >
               <button
                 className="bg-transparent border-0 outline-0 text-danger fs-4"
+                onClick={()=>dispatch(deleteTodo())}
               >
                 <AiOutlineDelete />
               </button>
