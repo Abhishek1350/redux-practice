@@ -1,6 +1,36 @@
 import { Button, Modal, Form } from 'react-bootstrap'
+import { useState } from 'react'
+import { useDispatch } from "react-redux";
+import { addTodo } from "../../services/action/action";
 
 const ToDoForm = (props) => {
+  const dispatch = useDispatch();
+
+  const [todoData, setTodoData] = useState({
+    title: '',
+    description: '',
+  })
+
+  const handleChange = (e) => {
+    setTodoData({
+      ...todoData,
+      [e.target.name]: e.target.value,
+    })
+  }
+
+  const handleSubmit = () => {
+    if (todoData.title === '' || todoData.description === '') return alert('Please fill all the fields')
+    dispatch(addTodo({
+      title: todoData.title,
+      description: todoData.description,
+    }))
+    setTodoData({
+      title: '',
+      description: '',
+    })
+    props.onHide();
+  }
+
   return (
     <Modal
       {...props}
@@ -17,16 +47,32 @@ const ToDoForm = (props) => {
         <Form>
           <Form.Group className="mb-3">
             <Form.Label>Title</Form.Label>
-            <Form.Control type="text" placeholder="What's that" />
+            <Form.Control
+              type="text"
+              placeholder="What's this about"
+              name="title"
+              value={todoData.title}
+              onChange={handleChange}
+            />
           </Form.Group>
 
           <Form.Group className="mb-3">
             <Form.Label>Description</Form.Label>
-            <Form.Control type="text" placeholder="Description" />
+            <Form.Control
+              type="text"
+              placeholder="Enter description"
+              name="description"
+              value={todoData.description}
+              onChange={handleChange}
+            />
           </Form.Group>
 
           <Form.Group className="mb-3 d-flex justify-content-center">
-            <Button variant="primary" className="w-50 fw-bold">
+            <Button
+              variant="primary"
+              className="w-50 fw-bold"
+              onClick={handleSubmit}
+            >
               Add
             </Button>
           </Form.Group>

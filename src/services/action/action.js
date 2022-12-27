@@ -7,10 +7,10 @@ export const addTodo = (data) => {
     }  
 }
 
-export const deleteTodo = (id) => {
+export const deleteTodo = (title) => {
     return {
         type: DELETE_TODO,
-        id
+        title
     }
 }
 

@@ -3,16 +3,16 @@ import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai"
 import { useDispatch } from "react-redux";
 import { deleteTodo } from "../../services/action/action";
 
-const ToDo = () => {
+const ToDo = ({ todo }) => {
   const dispatch = useDispatch();
+  
   return (
     <Col md={3} className="mb-4">
       <Card >
         <Card.Body>
-          <Card.Title>Card Title</Card.Title>
+          <Card.Title>{todo.title}</Card.Title>
           <Card.Text>
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
+            {todo.description}
           </Card.Text>
           <div className="d-flex gap-1" title="add">
 
@@ -26,7 +26,7 @@ const ToDo = () => {
             >
               <button
                 className="bg-transparent border-0 outline-0 text-danger fs-4"
-                onClick={()=>dispatch(deleteTodo())}
+                onClick={() => dispatch(deleteTodo(todo.title))}
               >
                 <AiOutlineDelete />
               </button>

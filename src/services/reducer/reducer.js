@@ -6,8 +6,8 @@ export const todoData = (data = [], action) => {
             return [...data, action.data]
 
         case DELETE_TODO:
-            data.length = data.length - 1
-            return [...data]
+            const newData = data.filter((item) => item.title !== action.title)
+            return newData
 
         default:
             return data
