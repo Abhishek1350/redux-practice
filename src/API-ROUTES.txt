@@ -1,0 +1,7 @@
+Base URL is : https://sore-pear-shrimp-veil.cyclic.app
+Get all : /todos - GET
+Get one : /todo/:id - GET
+Add new : /todo - POST
+Update  : /todo/:id - PUT
+Delete one : /todo/:id - DELETE
+Delete all : /todos - DELETE
