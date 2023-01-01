@@ -1,4 +1,4 @@
-import { ADD_TODO, DELETE_TODO, EDIT_TODO,  SET_TODOS } from "../constants"
+import { ADD_TODO, SET_TODO, SET_TODOS, DELETE_TODO, DELETE_ALL } from "../constants"
 
 export const todoData = (data = [], action) => {
     switch (action.type) {
@@ -8,13 +8,15 @@ export const todoData = (data = [], action) => {
 
         case ADD_TODO:
             return data
+            
+        case SET_TODO:
+            return [...data, action.data]
 
-        // case DELETE_TODO:
-        //     console.log(action)
-        //     return data
+        case DELETE_TODO:
+            return data
 
-        // case EDIT_TODO:
-        //     return data
+        case DELETE_ALL:
+            return []
 
         default:
             return data

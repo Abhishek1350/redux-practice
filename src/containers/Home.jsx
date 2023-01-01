@@ -3,7 +3,7 @@ import { ToDo, ToDoForm } from "../components"
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { getTodos } from "../services/action/action";
+import { getTodos, deleteAll } from "../services/action/action";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -27,6 +27,10 @@ const Home = () => {
         </h2>
         <Button variant="warning" className="fw-bold" onClick={showModal}>
           Add Todo
+        </Button>
+
+        <Button variant="danger" className="fw-bold" onClick={()=>dispatch(deleteAll())}>
+          Delete All 
         </Button>
       </div>
       <Container className="my-5">

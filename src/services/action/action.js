@@ -1,4 +1,4 @@
-import { ADD_TODO, DELETE_TODO, EDIT_TODO, GET_TODOS } from "../constants"
+import { ADD_TODO, DELETE_TODO, GET_TODOS, DELETE_ALL } from "../constants"
 
 export const addTodo = (data) => {
     return {
@@ -14,16 +14,14 @@ export const deleteTodo = (id) => {
     }
 }
 
-export const editTodo = (id, data) => {
-    return {
-        type: EDIT_TODO,
-        id,
-        data
-    }
-}
-
 export const getTodos = () => {
     return {
         type: GET_TODOS,
+    }
+}
+
+export const deleteAll = () => {
+    return {
+        type: DELETE_ALL,
     }
 }
