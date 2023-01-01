@@ -1,4 +1,4 @@
-Base URL is : https://sore-pear-shrimp-veil.cyclic.app
+Base URL is : https://sample-api.cyclic.app
 Get all : /todos - GET
 Get one : /todo/:id - GET
 Add new : /todo - POST
