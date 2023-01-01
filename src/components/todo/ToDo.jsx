@@ -26,7 +26,7 @@ const ToDo = ({ todo }) => {
             >
               <button
                 className="bg-transparent border-0 outline-0 text-danger fs-4"
-                onClick={() => dispatch(deleteTodo(todo.title))}
+                onClick={() => dispatch(deleteTodo(todo._id))}
               >
                 <AiOutlineDelete />
               </button>

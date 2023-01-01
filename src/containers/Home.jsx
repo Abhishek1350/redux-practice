@@ -1,15 +1,23 @@
 import { Container, Row, Button } from "react-bootstrap"
 import { ToDo, ToDoForm } from "../components"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { getTodos } from "../services/action/action";
 
 const Home = () => {
+  const dispatch = useDispatch();
   const [modalShow, setModalShow] = useState(false);
   const todos = useSelector((state) => state.todoData);
 
   const showModal = () => {
     setModalShow(true)
   }
+
+  useEffect(() => {
+    dispatch(getTodos())
+  }, [dispatch])
+
 
   return (
     <Container className="my-3">
@@ -28,7 +36,7 @@ const Home = () => {
               todos.map((todo) => {
                 return (
                   <ToDo
-                    key={todo.title}
+                    key={todo._id}
                     todo={todo}
                   />
                 )

@@ -1,13 +1,20 @@
-import { ADD_TODO, DELETE_TODO, EDIT_TODO } from "../constants"
+import { ADD_TODO, DELETE_TODO, EDIT_TODO,  SET_TODOS } from "../constants"
 
 export const todoData = (data = [], action) => {
     switch (action.type) {
-        case ADD_TODO:
-            return [...data, action.data]
 
-        case DELETE_TODO:
-            const newData = data.filter((item) => item.title !== action.title)
-            return newData
+        case SET_TODOS:
+            return action.data
+
+        case ADD_TODO:
+            return data
+
+        // case DELETE_TODO:
+        //     console.log(action)
+        //     return data
+
+        // case EDIT_TODO:
+        //     return data
 
         default:
             return data
