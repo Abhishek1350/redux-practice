@@ -8,10 +8,16 @@ import { getTodos, deleteAll } from "../services/action/action";
 const Home = () => {
   const dispatch = useDispatch();
   const [modalShow, setModalShow] = useState(false);
+  const [editModalData, setEditModalData] = useState(null);
   const todos = useSelector((state) => state.todoData);
 
   const showModal = () => {
     setModalShow(true)
+  }
+
+  const onHide = () => {
+    setModalShow(false)
+    setEditModalData(null)
   }
 
   useEffect(() => {
@@ -42,6 +48,8 @@ const Home = () => {
                   <ToDo
                     key={todo._id}
                     todo={todo}
+                    setModalShow={setModalShow}
+                    setEditModalData={setEditModalData}
                   />
                 )
               })
@@ -55,7 +63,9 @@ const Home = () => {
       </Container>
       <ToDoForm
         show={modalShow}
-        onHide={() => setModalShow(false)}
+        onHide={onHide}
+        editmodaldata={editModalData}
+        seteditmodaldata={setEditModalData}
       />
     </Container>
   )

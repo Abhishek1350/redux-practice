@@ -3,8 +3,13 @@ import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai"
 import { useDispatch } from "react-redux";
 import { deleteTodo } from "../../services/action/action";
 
-const ToDo = ({ todo }) => {
+const ToDo = ({ todo, setModalShow, setEditModalData }) => {
   const dispatch = useDispatch();
+
+  const editTodo = () => {
+    setEditModalData(todo)
+    setModalShow(true)
+  }
   
   return (
     <Col md={3} className="mb-4">
@@ -42,6 +47,7 @@ const ToDo = ({ todo }) => {
             >
               <button
                 className="bg-transparent border-0 outline-0 text-primary fs-4"
+                onClick={editTodo}
               >
                 <AiOutlineEdit />
               </button>

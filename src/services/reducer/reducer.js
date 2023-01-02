@@ -1,4 +1,4 @@
-import { ADD_TODO, SET_TODO, SET_TODOS, DELETE_TODO, DELETE_ALL } from "../constants"
+import { ADD_TODO, SET_TODO, SET_TODOS, DELETE_TODO, EDIT_TODO, EDITED } from "../constants"
 
 export const todoData = (data = [], action) => {
     switch (action.type) {
@@ -18,9 +18,20 @@ export const todoData = (data = [], action) => {
         case DELETE_TODO:
             return data
 
-        // case DELETE_ALL:
-        //     console.log('delete all')
-        //     return action.data
+        case EDIT_TODO:
+            return data
+
+        case EDITED:
+            return data.map(todo => {
+                if (todo._id === action.data.id) {
+                    return {
+                        ...todo,
+                        title: action.data.title,
+                        description: action.data.description
+                    }
+                }
+                return todo
+            })
 
         default:
             return data

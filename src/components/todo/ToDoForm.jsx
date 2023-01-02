@@ -1,7 +1,7 @@
 import { Button, Modal, Form } from 'react-bootstrap'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useDispatch } from "react-redux";
-import { addTodo } from "../../services/action/action";
+import { addTodo, editTodo } from "../../services/action/action";
 
 const ToDoForm = (props) => {
   const dispatch = useDispatch();
@@ -20,10 +20,18 @@ const ToDoForm = (props) => {
 
   const handleSubmit = () => {
     if (todoData.title === '' || todoData.description === '') return alert('Please fill all the fields')
-    dispatch(addTodo({
-      title: todoData.title,
-      description: todoData.description,
-    }))
+    if (props.editmodaldata) {
+      dispatch(editTodo({
+        id: props.editmodaldata._id,
+        title: todoData.title,
+        description: todoData.description,
+      }))
+    } else {
+      dispatch(addTodo({
+        title: todoData.title,
+        description: todoData.description,
+      }))
+    }
     setTodoData({
       title: '',
       description: '',
@@ -31,9 +39,24 @@ const ToDoForm = (props) => {
     props.onHide();
   }
 
+  useEffect(() => {
+    if (props.editmodaldata) {
+      setTodoData({
+        title: props.editmodaldata.title,
+        description: props.editmodaldata.description,
+      })
+    } else {
+      setTodoData({
+        title: '',
+        description: '',
+      })
+    }
+  }, [props.editmodaldata])
+
   return (
     <Modal
-      {...props}
+      show={props.show}
+      onHide={props.onHide}
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
       centered
